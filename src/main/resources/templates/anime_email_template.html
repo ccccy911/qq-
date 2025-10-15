@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日二次元二次元每日每日邮件</title>
+    <style>
+        body {
+            font-family: "Comic Sans MS", "Marker Felt", sans-serif;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        /* 背景图片容器 */
+        .background-container {
+            position: relative;
+            width: 100%;
+            min-height: 400px; /* 背景图片最小高度 */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* 半透明遮罩，让文字更清晰 */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.7); /* 白色半透明遮罩 */
+        }
+
+        /* 内容区域 */
+        .content {
+            position: relative;
+            z-index: 2; /* 确保内容在遮罩上方 */
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .title {
+            font-size: 26px;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .quote-box {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            display: inline-block;
+            max-width: 80%;
+            border: 3px dashed;
+        }
+
+        .quote {
+            font-size: 18px;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* 可爱风格 */
+        .style-cute .title {
+            color: #ff6b8b;
+        }
+
+        .style-cute .quote-box {
+            border-color: #ff9bb3;
+        }
+
+        .style-cute .quote {
+            color: #d64970;
+        }
+
+        /* Emo风格 */
+        .style-emo .title {
+            color: #4a5a8c;
+        }
+
+        .style-emo .quote-box {
+            border-color: #7b8cb8;
+        }
+
+        .style-emo .quote {
+            color: #2d3b5c;
+        }
+
+        /* 动画效果 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content {
+            animation: fadeIn 1s ease-out;
+        }
+
+        .quote-box {
+            transition: all 0.3s ease;
+        }
+
+        .quote-box:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+<div class="container style-cute">
+    <!-- 背景图片容器（这里替换为你的图片） -->
+    <div class="background-container" style="background-image: url('可爱风格背景图URL')">
+        <div class="overlay"></div>
+
+        <div class="content">
+            <h2 class="title">今日份可爱请查收 🌸</h2>
+
+            <div class="quote-box">
+                <p class="quote">[大模型生成的文案将显示在这里]</p>
+            </div>
+
+            <div class="footer">
+                <p>二次元每日推送 ✨ | 用温暖治愈每一天</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 预览用：切换风格（实际邮件中不需要）
+    function toggleStyle() {
+        const container = document.querySelector('.container');
+        const background = document.querySelector('.background-container');
+        const title = document.querySelector('.title');
+
+        if (container.classList.contains('style-cute')) {
+            // 切换到emo风格
+            container.classList.remove('style-cute');
+            container.classList.add('style-emo');
+            background.style.backgroundImage = "url('emo风格背景图URL')";
+            title.textContent = "深夜emo时刻 🌙";
+        } else {
+            // 切换到可爱风格
+            container.classList.remove('style-emo');
+            container.classList.add('style-cute');
+            background.style.backgroundImage = "url('可爱风格背景图URL')";
+            title.textContent = "今日份可爱请查收 🌸";
+        }
+    }
+
+    // 预览按钮（实际邮件中不需要）
+    const btn = document.createElement('button');
+    btn.textContent = '切换风格';
+    btn.style.position = 'fixed';
+    btn.style.top = '20px';
+    btn.style.right = '20px';
+    btn.style.padding = '10px 15px';
+    btn.style.cursor = 'pointer';
+    btn.onclick = toggleStyle;
+    document.body.appendChild(btn);
+</script>
+</body>
+</html>
