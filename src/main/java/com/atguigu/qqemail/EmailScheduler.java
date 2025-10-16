@@ -30,7 +30,7 @@ public class EmailScheduler {
 
 
     // 每天8点发送可爱风格邮件（Cron表达式：秒 分 时 日 月 周）
-    @Scheduled(cron = "0 0 8 * * ?")
+    @Scheduled(cron = "0/30 * * * * ?")
     public void sendCuteEmail() {
         try {
             // 步骤1：调用大模型生成可爱风格文案
@@ -46,7 +46,7 @@ public class EmailScheduler {
 
 
     // 每天0点发送emo风格邮件
-    @Scheduled(cron = "0 0 0 * * ?")
+   /** @Scheduled(cron = "0/30 * * * * ?")
     public void sendEmoEmail() {
         try {
             // 步骤1：调用大模型生成emo风格文案
@@ -58,5 +58,5 @@ public class EmailScheduler {
             System.err.println("emo风格邮件发送失败：" + e.getMessage());
             e.printStackTrace();
         }
-    }
+    }**/
 }
