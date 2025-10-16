@@ -3,6 +3,7 @@ package com.atguigu.qqemail;
 
 import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -24,11 +25,12 @@ public class EmailScheduler {
     @Autowired
     private XunfeiAiClient xunfeiAiClient;
 
-    private final String toemail = "3576471609@qq.com";
+    @Value("${spring.mail.toemail}")
+    private String toemail;
 
 
     // 每天8点发送可爱风格邮件（Cron表达式：秒 分 时 日 月 周）
-    @Scheduled(cron = "0/30 * * * * ?")
+    @Scheduled(cron = "0 0 8 * * ?")
     public void sendCuteEmail() {
         try {
             // 步骤1：调用大模型生成可爱风格文案

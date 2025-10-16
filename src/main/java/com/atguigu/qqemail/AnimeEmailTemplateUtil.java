@@ -49,6 +49,7 @@ public class AnimeEmailTemplateUtil {
             // Emo风格配置
             html = html.replace("style-cute", "style-emo"); // 切换风格类
             html = html.replace("美少女的来信 🌸", "深夜emo时刻 🌙");
+            html = html.replace("二次元每日推送 ✨ | 用温暖治愈每一天", "月光漫过窗棂时，那些藏在年轮里的故事，正随着晚风轻轻洇入夜色");
         }
         return html;
     }

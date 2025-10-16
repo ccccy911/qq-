@@ -175,7 +175,7 @@ public class XunfeiAiClient {
             textItem.put("content", "直接随机回复我一句少女风元气满满的短文案");
         }
         else if(style == 0){
-            textItem.put("content", "直接随机回复我一句深夜emo的短文案，分手伤感");
+            textItem.put("content", "回复我一句网易云热评（不要重复，30字以内）");
         }
 
         textArray.add(textItem); // 放入数组
