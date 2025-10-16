@@ -32,7 +32,7 @@ public class EmailScheduler {
     public void sendCuteEmail() {
         try {
             // 步骤1：调用大模型生成可爱风格文案
-            String cuteQuote = xunfeiAiClient.generateQuote("可爱");
+            String cuteQuote = xunfeiAiClient.generateQuote(1);
             // 步骤2：调用邮件服务发送（true=可爱风格）
             emailService.sendAnimeEmail(cuteQuote, true,toemail);
             System.out.println("可爱风格邮件发送成功！");
@@ -48,7 +48,7 @@ public class EmailScheduler {
     public void sendEmoEmail() {
         try {
             // 步骤1：调用大模型生成emo风格文案
-            String emoQuote = xunfeiAiClient.generateQuote("emo");
+            String emoQuote = xunfeiAiClient.generateQuote(0);
             // 步骤2：调用邮件服务发送（false=emo风格）
             emailService.sendAnimeEmail(emoQuote, false,toemail);
             System.out.println("emo风格邮件发送成功！");

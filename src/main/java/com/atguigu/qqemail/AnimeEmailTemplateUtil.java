@@ -11,7 +11,7 @@ import java.util.Base64;
 @Component
 public class AnimeEmailTemplateUtil {
 
-    // 模板文件路径（固定放在resources/templates目录下）
+    // 模板文件路径（请确保该路径下存在对应的HTML模板）
     private static final String TEMPLATE_PATH = "templates/anime_email_template.html";
 
     /**
@@ -27,50 +27,30 @@ public class AnimeEmailTemplateUtil {
     }
 
     /**
-     * 生成最终的邮件HTML内容
+     * 生成最终的邮件HTML内容（不含图片处理逻辑）
      * @param quote 大模型生成的文案内容
      * @param isCute 是否为可爱风格
-     * @param cuteImageUrl 可爱风格背景图URL或Base64
-     * @param emoImageUrl emo风格背景图URL或Base64
      * @return 处理后的HTML字符串
      * @throws IOException 模板读取失败时抛出
      */
-    public String generateHtmlContent(String quote, boolean isCute,
-                                      String cuteImageUrl, String emoImageUrl) throws IOException {
+    public String generateHtmlContent(String quote, boolean isCute) throws IOException {
         // 1. 读取基础模板
         String html = readTemplate();
 
         // 2. 替换文案内容
         html = html.replace("[大模型生成的文案将显示在这里]", escapeHtml(quote));
 
-        // 3. 替换背景图片和风格
+        // 3. 切换风格（仅处理CSS类和标题，不涉及图片）
         if (isCute) {
             // 可爱风格配置
-            html = html.replace("可爱风格背景图URL", cuteImageUrl);
             html = html.replace("style-emo", ""); // 移除emo风格类
+            html = html.replace("深夜emo时刻 🌙", "美少女的来信 🌸");
         } else {
             // Emo风格配置
-            html = html.replace("可爱风格背景图URL", emoImageUrl);
             html = html.replace("style-cute", "style-emo"); // 切换风格类
-            html = html.replace("今日份可爱请查收 🌸", "深夜emo时刻 🌙");
+            html = html.replace("美少女的来信 🌸", "深夜emo时刻 🌙");
         }
-
         return html;
-    }
-
-    /**
-     * 将本地图片转换为Base64编码（避免邮件图片加载问题）
-     * @param imageName 图片文件名（放在resources/static/images目录下）
-     * @return Base64编码的图片字符串（可直接用于img标签或background-image）
-     * @throws IOException 图片读取失败时抛出
-     */
-    public String getLocalImageBase64(String imageName) throws IOException {
-        // 加载本地图片文件
-        ClassPathResource imageResource = new ClassPathResource("static/images/" + imageName);
-        // 读取图片字节数组
-        byte[] imageBytes = Files.readAllBytes(Paths.get(imageResource.getURI()));
-        // 转换为Base64编码并拼接前缀
-        return "data:image/jpeg;base64," + Base64.getEncoder().encodeToString(imageBytes);
     }
 
     /**
@@ -87,4 +67,3 @@ public class AnimeEmailTemplateUtil {
                 .replace("'", "&#39;");
     }
 }
-

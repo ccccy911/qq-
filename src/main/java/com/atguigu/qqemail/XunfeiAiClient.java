@@ -40,10 +40,10 @@ public class XunfeiAiClient {
 
     /**
      * 调用讯飞星火生成文案
-     * @param style 文案风格："可爱" 或 "伤感"
+     * @param style 文案风格：早八元气满满/晚上12点的深夜emo
      * @return 生成的文案内容
      */
-    public String generateQuote(String style) {
+    public String generateQuote(Integer style) {
         try {
             // 1. 生成鉴权签名（讯飞必须的步骤，用于身份验证）
             String authUrl = getAuthUrl(url, apiKey, apiSecret);
@@ -130,7 +130,7 @@ public class XunfeiAiClient {
     /**
      * 构建请求参数（根据讯飞星火的格式要求）
      */
-    private JSONObject buildRequest(String style) {
+    private JSONObject buildRequest(Integer style) {
         JSONObject request = new JSONObject();
 
         // 1. 基础配置（匹配文档的header结构）
@@ -171,8 +171,13 @@ public class XunfeiAiClient {
         JSONArray textArray = new JSONArray();
         JSONObject textItem = new JSONObject();
         textItem.put("role", "user"); // 角色：用户
-        textItem.put("content", "生成一句" + style + "风格的短文案，适合每日邮件提醒，" +
-                "不超过50字，带二次元感，语言优美，不要加标题。");
+        if(style == 1){
+            textItem.put("content", "直接随机回复我一句少女风元气满满的短文案");
+        }
+        else if(style == 0){
+            textItem.put("content", "直接随机回复我一句深夜emo的短文案，分手伤感");
+        }
+
         textArray.add(textItem); // 放入数组
 
         message.put("text", textArray); // text字段是数组
